@@ -1,6 +1,7 @@
 package com.xiaohei.service.impl;
 
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.xiaohei.dao.mapper.OrderMapper;
 import com.xiaohei.entity.OrderDo;
 import com.xiaohei.entity.OrderVo;
@@ -15,6 +16,7 @@ import java.util.UUID;
  * @Author: Xiaohei
  * @CreateTime: 2022/11/3 23:52
  */
+@DS("sharding")
 @Service("orderService")
 public class OrderServiceImpl implements OrderService {
 
@@ -23,6 +25,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void createOrder(OrderVo orderVo) {
+
         OrderDo orderDo = new OrderDo();
         orderDo.setOrderId(UUID.randomUUID().toString().replaceAll("-", ""));
         orderDo.setUserId(orderVo.getUserId());

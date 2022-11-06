@@ -1,6 +1,9 @@
 server:
   port: 18800
 spring:
+  profiles:
+    active:
+      - sharding
   application:
     name: sharding
   datasource:
@@ -41,51 +44,6 @@ spring:
         connectionProperties:
           druid.stat.mergeSql: true
           druid.stat.slowSqlMillis: 500
-  shardingsphere:
-    mode:
-      type: Standalone
-      repository:
-        type: File
-        props:
-          path: .shardingsphere
-      overwrite: true
-    datasource:
-      names: dy0,dy1
-      dy0:
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/dynamic0
-        username: root
-        password: root
-      dy1:
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/dynamic1
-        username: root
-        password: root
-    rules:
-      sharding:
-        tables:
-          t_order:
-            actual-data-nodes: dy$->{0..1}.t_order_2022
-            database-strategy:
-              standard:
-                sharding-column: order_id
-                sharding-algorithm-name: uuid-sharding-inline
-            table-strategy:
-              standard:
-                sharding-column: created_time
-                sharding-algorithm-name: date-sharding
-        sharding-algorithms:
-          uuid-sharding-inline:
-            type: INLINE
-            props:
-              algorithm-expression: dy_$->{order_id % 2}
-          date-sharding-classbase:
-            type: CLASS_BASED
-            props:
-              algorithmClass‐Name: com.xiaohei.sharding.algorithm.DateSharding
-        binding-tables: t_order
 mybatis-plus:
   mapper-locations: "classpath://mapper/*.xml"
 logging:

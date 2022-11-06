@@ -4,7 +4,11 @@
 
 ## 目标
 - sharding-jdbc分库分表
-- 动态数据源
+  - 基于userId分库
+  - 基于createdTime按月分表
+- 数据双写
+  - 动态数据源
+  - canal+kafka实现表监听
 - 分表节点动态刷新
 - 数据迁移
 

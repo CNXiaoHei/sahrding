@@ -19,6 +19,7 @@ public class DateSharding implements StandardShardingAlgorithm<Timestamp> {
 
     @Override
     public String doSharding(Collection<String> collection, PreciseShardingValue<Timestamp> preciseShardingValue) {
+
         return collection.iterator().next();
     }
 
