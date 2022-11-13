@@ -25,7 +25,7 @@ spring:
       sharding:
         tables:
           t_order:
-            actual-data-nodes: dy$->{0..1}.t_order_$->{com.xiaohei.sharding.}
+            actual-data-nodes: dy$->{0..1}.t_order_$->{com.xiaohei.sharding.util.DataNodeUtil.getDataNodes()}
             database-strategy:
               standard:
                 sharding-column: user_id
