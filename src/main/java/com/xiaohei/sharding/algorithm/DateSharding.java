@@ -26,7 +26,7 @@ public class DateSharding implements StandardShardingAlgorithm<Timestamp> {
         if (optional.isEmpty()) {
             return "t_order_exception";
         }
-        return  optional.get();
+        return optional.get();
     }
 
     @Override

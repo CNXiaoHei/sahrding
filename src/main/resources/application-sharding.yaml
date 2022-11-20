@@ -3,10 +3,7 @@ spring:
     mode:
       type: Standalone
       repository:
-        type: File
-        props:
-          path: .shardingsphere
-      overwrite: true
+        type: JDBC
     datasource:
       names: dy0,dy1
       dy0:
@@ -33,7 +30,7 @@ spring:
             table-strategy:
               standard:
                 sharding-column: created_time
-                sharding-algorithm-name: date-sharding
+                sharding-algorithm-name: date-sharding-classbase
         sharding-algorithms:
           uuid-sharding-inline:
             type: INLINE
