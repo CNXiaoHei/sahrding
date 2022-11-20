@@ -25,7 +25,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void createOrder(OrderVo orderVo) {
-
         OrderDo orderDo = new OrderDo();
         orderDo.setOrderId(UUID.randomUUID().toString().replaceAll("-", ""));
         orderDo.setUserId(orderVo.getUserId());
